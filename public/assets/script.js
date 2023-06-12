@@ -3,17 +3,22 @@ const inputOne = document.getElementById('input-one');
 const inputTwo = document.getElementById('input-two');
 
 const postText = async (userInput) => {
-    const res = await fetch('/relay', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(userInput)
-    })
-    const data = await res.json()
-    const message = data.body.userInput
-    console.log('MESSAGE: ' + message)
-    return message;
+    try {
+        const res = await fetch('/relay', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(userInput)
+        })
+        const data = await res.json()
+        const message = data.body.userInput
+        console.log('MESSAGE: ' + message)
+        return message;
+    } catch (err) {
+        console.error(err);
+    }
+    
 }
 
 const submitOneHandler =(e) => {
