@@ -16,15 +16,11 @@ app.get('/', (req, res) => {
 app.post('/relay', (req, res) => {
     console.info(`${req.method} request received`);
 
-    console.log('REQDOTBODY');
-    console.log(req.body);
-
     if(req.body) {
         const response = {
             status: 'succes',
             body: req.body
         }
-
         console.log('RESPONSE');
         console.log(response);
         res.status(200).json(response);
