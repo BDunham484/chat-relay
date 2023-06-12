@@ -1,10 +1,10 @@
 const formSubmitOne = document.getElementById('form-submit-one');
-const inputOne = doucment.getElementById('input-one');
-const inputTwo = doucment.getElementById('input-tow');
+const inputOne = document.getElementById('input-one');
+const inputTwo = document.getElementById('input-tow');
 
 const postText = (userInput) => {
     console.log('USERINPUT')
-    console.log(userinput)
+    console.log(userInput)
     fetch('/relay', {
         method: 'POST',
         headers: {
@@ -19,7 +19,7 @@ const postText = (userInput) => {
         return data
     })
     .catch((err) => {
-        console.error('ERROR IN POST REQUEST: ', error);
+        console.error('ERROR IN POST REQUEST: ', err);
     })
 }
 
@@ -32,7 +32,7 @@ const submitOneHandler =(e) => {
 
     postText(userInput).then((data) => console.log(data));
 
-    inputTwo.value = userInput.userInput:
+    inputTwo.value = userInput.userInput
     inputOne.value = '';
 };
 
