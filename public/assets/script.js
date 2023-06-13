@@ -4,15 +4,15 @@ const inputTwo = document.getElementById('input-two');
 const nicknameOne = document.getElementById('nickname-one');
 const nicknameTwo = document.getElementById('nickname-two');
 
-const getData = async () => {
-    const res = await fetch('/getData', {
+const getSessName = async () => {
+    const res = await fetch('/getSessName', {
         method: 'GET',
     })
     const data = await res.json()
     nicknameOne.value = data;
 }
 
-getData()
+getSessName()
 
 const postText = async (userInput) => {
     try {

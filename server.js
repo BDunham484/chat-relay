@@ -19,9 +19,9 @@ const sess = {
 
 app.use(session(sess));
 
-app.get('/getData', (req, res) => {
-    const userName = sess.name;
-    res.json(userName)
+app.get('/getSessName', (req, res) => {
+    const sessName = sess.name;
+    res.json(sessName)
 })
 
 app.use(express.static("public"));
@@ -43,7 +43,7 @@ app.post('/relay', (req, res) => {
     } else {
         res.status(500).json("It's messed up, man")
     };
-});;
+});
 
 app.listen(port, () => {
     console.log(`Server running on port ${port}!`);
