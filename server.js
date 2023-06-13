@@ -1,11 +1,14 @@
 const express = require("express");
 const path = require("path");
 const app = express();
+const { rando_name } = require('./utils/helpers');
 
 const port = 3001;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+let name = 
 
 app.use(express.static("public"));
 
@@ -21,8 +24,7 @@ app.post('/relay', (req, res) => {
             status: 'succes',
             body: req.body
         }
-        console.log('RESPONSE');
-        console.log(response);
+
         res.status(200).json(response);
     } else {
         res.status(500).json("It's messed up, man")
