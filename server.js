@@ -1,6 +1,7 @@
 const express = require("express");
 const path = require("path");
 const app = express();
+const session = require('express-session');
 const { rando_name } = require('./utils/helpers');
 
 const port = 3001;
@@ -8,7 +9,20 @@ const port = 3001;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-let name = 
+const sess = {
+    secret: 'for your eyes only',
+    resave: false,
+    saveUninitialized: true,
+    cookie: {},
+    name: rando_name()
+}
+
+app.use(session(sess));
+
+app.get('/getData', (req, res) => {
+    const userName = sess.name;
+    res.json(userName)
+})
 
 app.use(express.static("public"));
 

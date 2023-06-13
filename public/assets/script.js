@@ -4,6 +4,16 @@ const inputTwo = document.getElementById('input-two');
 const nicknameOne = document.getElementById('nickname-one');
 const nicknameTwo = document.getElementById('nickname-two');
 
+const getData = async () => {
+    const res = await fetch('/getData', {
+        method: 'GET',
+    })
+    const data = await res.json()
+    nicknameOne.value = data;
+}
+
+getData()
+
 const postText = async (userInput) => {
     try {
         const res = await fetch('/relay', {
