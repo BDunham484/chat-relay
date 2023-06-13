@@ -1,6 +1,8 @@
 const formSubmitOne = document.getElementById('form-submit-one');
 const inputOne = document.getElementById('input-one');
 const inputTwo = document.getElementById('input-two');
+const nicknameOne = document.getElementById('nickname-one');
+const nicknameTwo = document.getElementById('nickname-two');
 
 const postText = async (userInput) => {
     try {
@@ -12,11 +14,15 @@ const postText = async (userInput) => {
             body: JSON.stringify(userInput)
         })
         const data = await res.json()
-        const message = data.body.userInput
-        console.log('MESSAGE: ' + message)
+        console.log(data);
+        const message = {
+            nickname: data.body.nickname,
+            message: data.body.message
+        }
+        
         return message;
     } catch (err) {
-        console.error(err);
+        alert(err)
     }
     
 }
@@ -24,12 +30,20 @@ const postText = async (userInput) => {
 const submitOneHandler =(e) => {
     e.preventDefault();
 
-    let userInput = {
-        'userInput': inputOne.value
+    if (nicknameOne.value) {
+        let userInput = {
+            'nickname': nicknameOne.value,
+            'message': inputOne.value
+        }
+    } else {
+        alert('You have to use a nickname');
     }
+    
 
     postText(userInput)
-        .then((message) => inputTwo.value = message)
+        .then((message) => {
+            inputTwo.value = `${message.nickname}: ${message.message}`;
+        })
         .catch((err) => console.error(err));
     
     inputOne.value = '';
